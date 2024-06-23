@@ -25,6 +25,8 @@ public class SpringJpaPracticeApplication implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		System.out.println(courseRepo.findById(10003));
 		System.out.println(studentRepo.findById(1001));
+		studentRepo.getCoursesByStudent(1001);
+		studentRepo.saveHardCodedNewStudentAndCourse();
 	//	System.out.println(repo.save(new Course(10002L,"AI & Machine Learning")));
 	//	repo.deleteById(10003);
 	}

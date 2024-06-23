@@ -36,9 +36,8 @@ public class Course {
 
 	}
 
-	public Course(long id, String name) {
+	public Course(String name) {
 		super();
-		this.id = id;
 		this.name = name;
 	}
 
@@ -93,7 +92,7 @@ public class Course {
 		return students;
 	}
 
-	public void setStudents(Student student) {
+	public void addStudents(Student student) {
 		this.students.add(student);
 	}
 

@@ -35,9 +35,27 @@ public class StudentCrudRepo {
 	@Transactional
 	public void deleteById(long studentId)
 	{
-		Student course = this.findById(studentId);
-		manager.remove(course);
+		Student stud = this.findById(studentId);
+		manager.remove(stud);
 	}
 	
+	@Transactional
+	public void getCoursesByStudent(long studentId)
+	{
+		Student stud = manager.find(Student.class, studentId);
+		stud.getCourses().stream().forEach(System.out::println);
+	}
 	
+	@Transactional
+	public void saveHardCodedNewStudentAndCourse()
+	{
+		Student stud = new Student("Tony Stark");
+		Course cr = new Course("Rust");
+		manager.persist(cr);
+		manager.persist(stud);
+		
+		stud.addCourse(cr);
+		cr.addStudents(stud);
+		manager.persist(stud);
+	}
 }

@@ -10,6 +10,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.NamedNativeQueries;
 import jakarta.persistence.NamedNativeQuery;
 import jakarta.persistence.OneToMany;
@@ -24,6 +25,8 @@ public class Course {
 	private String name;
 	@OneToMany
 	private List<Review> reviews = new ArrayList<>();
+	@ManyToMany(mappedBy = "courses")
+	private List<Student> students = new ArrayList<>();
 	@CreationTimestamp
 	private LocalDateTime createdDate;
 	@UpdateTimestamp
@@ -83,6 +86,15 @@ public class Course {
 	public void removeReview(Review review)
 	{
 		this.reviews.remove(review);
+	}
+	
+
+	public List<Student> getStudents() {
+		return students;
+	}
+
+	public void setStudents(Student student) {
+		this.students.add(student);
 	}
 
 	@Override
